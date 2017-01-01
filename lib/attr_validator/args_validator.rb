@@ -90,7 +90,7 @@ module AttrValidator::ArgsValidator
     # @param key hash's key
     def has_key!(hash, key)
       unless hash.has_key?(key)
-        raise ArgError, "#{hash} should has #{key} key"
+        raise ArgError, "#{hash} should have #{key} key"
       end
     end
 
