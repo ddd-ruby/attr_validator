@@ -7,16 +7,15 @@ class AttrValidator::Validators::ExclusionValidator
     return [] if value.nil?
 
     errors = []
-    if options[:in]
-      if options[:in].include?(value)
-        errors << (options[:message] || AttrValidator::I18n.t('errors.should_not_be_included_in_list', list: options[:in]))
-      end
+    if options[:in].include?(value)
+      errors << (options[:message] || AttrValidator::I18n.t('errors.should_not_be_included_in_list', list: options[:in]))
     end
     errors
   end
 
   def self.validate_options(options)
     AttrValidator::ArgsValidator.is_hash!(options, :validation_rule)
+    AttrValidator::ArgsValidator.has_key!(options, :in)
     AttrValidator::ArgsValidator.has_only_allowed_keys!(options, [:in, :message], :validation_rule)
   end
 

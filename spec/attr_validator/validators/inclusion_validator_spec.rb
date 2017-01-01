@@ -16,7 +16,7 @@ describe AttrValidator::Validators::InclusionValidator do
   describe ".validate_options" do
     it "should raise error if validation attributes are invalid" do
       lambda do
-        AttrValidator::Validators::InclusionValidator.validate_options(wrong_option: false)
+        AttrValidator::Validators::InclusionValidator.validate_options(wrong_option: false, in: [])
       end.should raise_error("validation options has unacceptable options [:wrong_option]")
     end
   end
