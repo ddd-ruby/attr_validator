@@ -1,15 +1,35 @@
 require 'spec_helper'
 
 describe AttrValidator::Validators::NotNilValidator do
+  def validate(*args)
+    AttrValidator::Validators::NotNilValidator.validate(*args)
+  end
+
+  def passes(v)
+    expect(v).to be_empty
+  end
+
+  def fails(v, errors)
+    expect(v).to eq(errors)
+  end
+
   describe ".validate" do
     it "should return empty errors if object is not nil" do
-      errors = AttrValidator::Validators::NotNilValidator.validate('home', true)
-      errors.should be_empty
+      passes(validate('home', true))
     end
 
     it "should return errors if object is nil" do
-      errors = AttrValidator::Validators::NotNilValidator.validate(nil, true)
-      errors.should == ["can not be nil"]
+      fails(validate(nil, true), ["can not be nil"])
+    end
+
+    context "with positive presence flag" do
+      it "passes for nil" do
+        passes(validate(nil, false))
+      end
+
+      it "fails for non-nil" do
+        fails(validate(1, false), ["should be nil"])
+      end
     end
   end
 

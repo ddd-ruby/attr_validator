@@ -1,15 +1,29 @@
 require 'spec_helper'
 
 describe AttrValidator::Validators::PresenceValidator do
+  def validate(*args)
+    AttrValidator::Validators::PresenceValidator.validate(*args)
+  end
+
+  def passes(v)
+    expect(v).to be_empty
+  end
+
+  def fails(v, errors)
+    expect(v).to eq(errors)
+  end
+
   describe ".validate" do
     it "should return empty errors if text is not blank" do
-      errors = AttrValidator::Validators::PresenceValidator.validate('home', true)
-      errors.should be_empty
+      passes(validate('home', true))
     end
 
     it "should return errors if text is not specified" do
-      errors = AttrValidator::Validators::PresenceValidator.validate(" ", true)
-      errors.should == ["can not be blank"]
+      fails(validate(" ", true), ["can not be blank"])
+    end
+
+    it "should return errors if text is not specified" do
+      fails(validate("1", false), ["should be blank"])
     end
   end
 
