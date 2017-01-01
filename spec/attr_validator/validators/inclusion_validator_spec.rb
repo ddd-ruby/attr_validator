@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'attr_validator'
 
 describe AttrValidator::Validators::InclusionValidator do
   describe ".validate" do
