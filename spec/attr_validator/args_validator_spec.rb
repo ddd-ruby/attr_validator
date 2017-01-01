@@ -126,7 +126,7 @@ describe AttrValidator::ArgsValidator do
     it "raises else" do
       expect{
         AttrValidator::ArgsValidator.has_key!({a: 1}, :b)
-      }.to raise_error(AttrValidator::ArgsValidator::ArgError, "{:a=>1} should have b key")
+      }.to raise_error(AttrValidator::ArgsValidator::ArgError, "{:a=>1} should have 'b' key")
     end
   end
 
