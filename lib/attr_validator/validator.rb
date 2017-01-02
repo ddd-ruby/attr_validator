@@ -103,22 +103,24 @@ module AttrValidator::Validator
   end
 
   def skip_validation?(options)
-    if options[:if]
-      if options[:if].is_a?(Symbol)
-        true unless self.send(options[:if])
-      elsif options[:if].is_a?(Proc)
-        true unless self.instance_exec(&options[:if])
-      else
-        false
-      end
-    elsif options[:unless]
-      if options[:unless].is_a?(Symbol)
-        true if self.send(options[:unless])
-      elsif options[:unless].is_a?(Proc)
-        true if self.instance_exec(&options[:unless])
-      else
-        false
-      end
+    return unless options[:if] || options[:unless]
+    return handle_if_skip_validation(options)     if options[:if]
+    return handle_unless_skip_validation(options) if options[:unless]
+  end
+
+  def handle_if_skip_validation(options)
+    if options[:if].is_a?(Symbol)
+      return ! self.send(options[:if])
+    elsif options[:if].is_a?(Proc)
+      return ! self.instance_exec(&options[:if])
+    end
+  end
+
+  def handle_unless_skip_validation(options)
+    if options[:unless].is_a?(Symbol)
+      return self.send(options[:unless])
+    elsif options[:unless].is_a?(Proc)
+      return self.instance_exec(&options[:unless])
     end
   end
 
