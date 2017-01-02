@@ -1,5 +1,6 @@
 require 'i18n'
 require 'attr_validator/core_extensions/class_attribute'
+require 'attr_validator/core_extensions/humanize'
 require 'attr_validator/concern'
 require 'attr_validator/version'
 require 'attr_validator/errors'
