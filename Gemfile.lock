@@ -7,6 +7,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    byebug (9.0.6)
     codecov (0.1.9)
       json
       simplecov
@@ -37,6 +38,7 @@ PLATFORMS
 DEPENDENCIES
   attr_validator!
   bundler (~> 1.3)
+  byebug
   codecov
   rake
   rspec
