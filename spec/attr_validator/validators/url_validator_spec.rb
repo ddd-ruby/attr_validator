@@ -11,6 +11,18 @@ describe AttrValidator::Validators::UrlValidator do
       errors = AttrValidator::Validators::UrlValidator.validate(':123asdffd.com', true)
       errors.should == ["invalid url"]
     end
+
+    context "false as url_flag" do
+      it "fails if url is valid" do
+        errors = AttrValidator::Validators::UrlValidator.validate('example-asdf.com', false)
+        expect(errors).to eq(["can not be a url"])
+      end
+
+      it "passes if url is invalid" do
+        errors = AttrValidator::Validators::UrlValidator.validate(':123asdffd.com', false)
+        expect(errors).to eq([])
+      end
+    end
   end
 
   describe ".validate_options" do
