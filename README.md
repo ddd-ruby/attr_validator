@@ -1,4 +1,4 @@
-# AttrValidator [![Build Status](https://travis-ci.org/AlbertGazizov/attr_validator.png)](https://travis-ci.org/AlbertGazizov/attr_validator) [![Code Climate](https://codeclimate.com/github/AlbertGazizov/attr_validator.png)](https://codeclimate.com/github/AlbertGazizov/attr_validator)
+# AttrValidator [![Build Status](https://travis-ci.org/AlbertGazizov/attr_validator.png)](https://travis-ci.org/AlbertGazizov/attr_validator) [![Code Climate](https://codeclimate.com/github/ddd-ruby/attr_validator/badges/gpa.svg)](https://codeclimate.com/github/ddd-ruby/attr_validator)
 
 
 AttrValidator is simple library for validating ruby objects.
