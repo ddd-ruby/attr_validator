@@ -6,7 +6,7 @@ require 'pure_validator/version'
 Gem::Specification.new do |spec|
   spec.name          = "pure_validator"
   spec.version       = PureValidator::VERSION
-  spec.authors       = ["Albert Gazizov"]
+  spec.authors       = ["Albert Gazizov", "Roman Heinrich"]
   spec.email         = ["deeper4k@gmail.com"]
   spec.description   = %q{Object validation library}
   spec.summary       = %q{Moves validation logic to validators}
