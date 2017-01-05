@@ -1,4 +1,4 @@
-# PureValidator [![Build Status](https://travis-ci.org/AlbertGazizov/pure_validator.png)](https://travis-ci.org/AlbertGazizov/pure_validator) [![Code Climate](https://codeclimate.com/github/ddd-ruby/pure_validatorbadges/gpa.svg)](https://codeclimate.com/github/ddd-ruby/pure_validator)
+# PureValidator [![Build Status](https://travis-ci.org/ddd-ruby/pure_validator.png)](https://travis-ci.org/ddd-ruby/pure_validator) [![Code Climate](https://codeclimate.com/github/ddd-ruby/pure_validator/badges/gpa.svg)](https://codeclimate.com/github/ddd-ruby/pure_validator)
 
 
 PureValidator is simple library for validating ruby objects.
