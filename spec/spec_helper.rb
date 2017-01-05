@@ -17,5 +17,4 @@ end
 require 'pure_validator'
 
 RSpec.configure do |config|
-  config.color_enabled = true
 end
