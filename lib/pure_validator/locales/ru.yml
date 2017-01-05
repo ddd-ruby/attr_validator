@@ -1,5 +1,5 @@
 ru:
-  attr_validator:
+  pure_validator:
     errors:
       invalid_email: "невалидный электронный адрес"
       can_not_be_email: "не может быть адресом элекронной почты"

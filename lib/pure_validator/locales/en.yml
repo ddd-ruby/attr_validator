@@ -1,5 +1,5 @@
 en:
-  attr_validator:
+  pure_validator:
     errors:
       invalid_email: "invalid email"
       can_not_be_email: "can't be email"

@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'attr_validator/version'
+require 'pure_validator/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "attr_validator"
+  spec.name          = "pure_validator"
   spec.version       = PureValidator::VERSION
   spec.authors       = ["Albert Gazizov"]
   spec.email         = ["deeper4k@gmail.com"]
   spec.description   = %q{Object validation library}
   spec.summary       = %q{Moves validation logic to validators}
-  spec.homepage      = "http://github.com/AlbertGazizov/attr_validator"
+  spec.homepage      = "http://github.com/AlbertGazizov/pure_validator"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

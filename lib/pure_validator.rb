@@ -1,14 +1,14 @@
 require 'i18n'
-require 'attr_validator/core_extensions/class_attribute'
-require 'attr_validator/core_extensions/humanize'
-require 'attr_validator/concern'
-require 'attr_validator/version'
-require 'attr_validator/errors'
-require 'attr_validator/args_validator'
-require 'attr_validator/validator'
-require 'attr_validator/i18n'
-require 'attr_validator/validators'
-require 'attr_validator/validation_errors'
+require 'pure_validator/core_extensions/class_attribute'
+require 'pure_validator/core_extensions/humanize'
+require 'pure_validator/concern'
+require 'pure_validator/version'
+require 'pure_validator/errors'
+require 'pure_validator/args_validator'
+require 'pure_validator/validator'
+require 'pure_validator/i18n'
+require 'pure_validator/validators'
+require 'pure_validator/validation_errors'
 
 module PureValidator
   @@validators = {}
@@ -38,6 +38,6 @@ PureValidator.add_validator(:regexp,       PureValidator::Validators::RegexpVali
 PureValidator.add_validator(:url,          PureValidator::Validators::UrlValidator)
 
 # I18n settings
-I18n.load_path += Dir[File.dirname(__FILE__) +'/attr_validator/locales/*.yml']
+I18n.load_path += Dir[File.dirname(__FILE__) +'/pure_validator/locales/*.yml']
 I18n.default_locale = :en
 I18n.reload!

@@ -1,4 +1,4 @@
-# PureValidator [![Build Status](https://travis-ci.org/AlbertGazizov/attr_validator.png)](https://travis-ci.org/AlbertGazizov/attr_validator) [![Code Climate](https://codeclimate.com/github/ddd-ruby/attr_validator/badges/gpa.svg)](https://codeclimate.com/github/ddd-ruby/attr_validator)
+# PureValidator [![Build Status](https://travis-ci.org/AlbertGazizov/pure_validator.png)](https://travis-ci.org/AlbertGazizov/pure_validator) [![Code Climate](https://codeclimate.com/github/ddd-ruby/pure_validatorbadges/gpa.svg)](https://codeclimate.com/github/ddd-ruby/pure_validator)
 
 
 PureValidator is simple library for validating ruby objects.
@@ -97,7 +97,7 @@ end
 
 Add this line to your application's Gemfile:
 
-    gem 'attr_validator'
+    gem 'pure_validator'
 
 And then execute:
 
@@ -105,7 +105,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install attr_validator
+    $ gem install pure_validator
 
 ## Contributing
 
