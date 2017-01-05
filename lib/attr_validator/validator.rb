@@ -1,5 +1,5 @@
-module AttrValidator::Validator
-  extend AttrValidator::Concern
+module PureValidator::Validator
+  extend PureValidator::Concern
 
   included do
     class_attribute :validations, :associated_validations, :custom_validations
@@ -8,7 +8,7 @@ module AttrValidator::Validator
   module ClassMethods
     def validates(*args)
       options = args.pop
-      AttrValidator::ArgsValidator.is_hash!(options, "last argument")
+      PureValidator::ArgsValidator.is_hash!(options, "last argument")
 
       self.validations ||= {}
       args.each do |attr_name|
@@ -17,10 +17,10 @@ module AttrValidator::Validator
     end
 
     def validate_associated(association_name, options)
-      AttrValidator::ArgsValidator.not_nil!(options[:validator], :validator)
-      AttrValidator::ArgsValidator.is_class_or_symbol!(options[:validator], :validator)
-      AttrValidator::ArgsValidator.is_symbol_or_block!(options[:if], :if) if options[:if]
-      AttrValidator::ArgsValidator.is_symbol_or_block!(options[:unless], :unless) if options[:unless]
+      PureValidator::ArgsValidator.not_nil!(options[:validator], :validator)
+      PureValidator::ArgsValidator.is_class_or_symbol!(options[:validator], :validator)
+      PureValidator::ArgsValidator.is_symbol_or_block!(options[:if], :if) if options[:if]
+      PureValidator::ArgsValidator.is_symbol_or_block!(options[:unless], :unless) if options[:unless]
 
       self.associated_validations ||= {}
       self.associated_validations[association_name] = options
@@ -31,7 +31,7 @@ module AttrValidator::Validator
       if block_given?
         self.custom_validations << block
       elsif method_name
-        AttrValidator::ArgsValidator.is_symbol!(method_name, "validate method name")
+        PureValidator::ArgsValidator.is_symbol!(method_name, "validate method name")
         self.custom_validations << method_name
       else
         raise ArgumentError, "method name or block should be given for validate"
@@ -43,9 +43,9 @@ module AttrValidator::Validator
     def add_validations(attr_name, options)
       self.validations[attr_name] ||= {}
       options.each do |validator_name, validation_options|
-        validator = AttrValidator.validators[validator_name]
+        validator = PureValidator.validators[validator_name]
         unless validator
-          raise AttrValidator::Errors::MissingValidatorError, "Validator with name '#{validator_name}' doesn't exist"
+          raise PureValidator::Errors::MissingValidatorError, "Validator with name '#{validator_name}' doesn't exist"
         end
         validator.validate_options(validation_options)
         self.validations[attr_name][validator] = validation_options
@@ -54,7 +54,7 @@ module AttrValidator::Validator
   end
 
   def validate(entity)
-    errors = AttrValidator::ValidationErrors.new
+    errors = PureValidator::ValidationErrors.new
     self.validations ||= {}
     self.custom_validations ||= []
     self.associated_validations ||= {}
@@ -86,7 +86,7 @@ module AttrValidator::Validator
   def validate!(entity)
     errors = validate(entity)
     unless errors.empty?
-      raise AttrValidator::Errors::ValidationError.new("Validation Error", errors)
+      raise PureValidator::Errors::ValidationError.new("Validation Error", errors)
     end
   end
 

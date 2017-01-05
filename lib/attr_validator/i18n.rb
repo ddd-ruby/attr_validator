@@ -1,4 +1,4 @@
-class AttrValidator::I18n
+class PureValidator::I18n
 
   # Translates message to specific language
   def self.t(message, options = {})

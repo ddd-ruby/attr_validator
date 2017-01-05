@@ -1,5 +1,5 @@
 # Helper class for arguments validation
-module AttrValidator::ArgsValidator
+module PureValidator::ArgsValidator
   class ArgError < StandardError; end
 
   class << self

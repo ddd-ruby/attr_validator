@@ -1,4 +1,4 @@
-module AttrValidator::Validators
+module PureValidator::Validators
   require 'attr_validator/validators/exclusion_validator'
   require 'attr_validator/validators/inclusion_validator'
   require 'attr_validator/validators/email_validator'

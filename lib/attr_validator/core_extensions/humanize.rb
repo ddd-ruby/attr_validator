@@ -1,4 +1,4 @@
-module AttrValidator
+module PureValidator
   module Humanize
     # poor mans humanize... (to not depend on inflector)
     # puts humanize "hello_there", format: :class

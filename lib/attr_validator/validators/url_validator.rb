@@ -1,4 +1,4 @@
-class AttrValidator::Validators::UrlValidator
+class PureValidator::Validators::UrlValidator
   URL_REGEXP = /^(https?:\/\/)?([\w\.-]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/
 
   # Validates that string is a valid url
@@ -10,16 +10,16 @@ class AttrValidator::Validators::UrlValidator
 
     errors = []
     if url_flag
-      errors << AttrValidator::I18n.t('errors.invalid_url') unless !!URL_REGEXP.match(value)
+      errors << PureValidator::I18n.t('errors.invalid_url') unless !!URL_REGEXP.match(value)
     else
-      errors << AttrValidator::I18n.t('errors.can_not_be_url') if !!URL_REGEXP.match(value)
+      errors << PureValidator::I18n.t('errors.can_not_be_url') if !!URL_REGEXP.match(value)
     end
 
     errors
   end
 
   def self.validate_options(url_flag)
-    AttrValidator::ArgsValidator.is_boolean!(url_flag, :validation_rule)
+    PureValidator::ArgsValidator.is_boolean!(url_flag, :validation_rule)
   end
 
 end

@@ -5,7 +5,7 @@ require 'attr_validator/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "attr_validator"
-  spec.version       = AttrValidator::VERSION
+  spec.version       = PureValidator::VERSION
   spec.authors       = ["Albert Gazizov"]
   spec.email         = ["deeper4k@gmail.com"]
   spec.description   = %q{Object validation library}

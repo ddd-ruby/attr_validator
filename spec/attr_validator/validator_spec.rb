@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AttrValidator::Validator do
+describe PureValidator::Validator do
   describe "#validate" do
     class Contact
       attr_accessor :first_name, :last_name, :position, :age, :type, :email, :color, :status, :stage, :description, :companies, :address
@@ -15,20 +15,20 @@ describe AttrValidator::Validator do
     end
 
     class CompanyValidator
-      include AttrValidator::Validator
+      include PureValidator::Validator
 
       validates :name, presence: true, length: { min: 3, max: 9 }
     end
 
     class AddressValidator
-      include AttrValidator::Validator
+      include PureValidator::Validator
 
       validates :city, presence: true, length: { min: 3, max: 33 }
       validates :street, presence: true, length: { min: 3, max: 33 }
     end
 
     class ContactValidator
-      include AttrValidator::Validator
+      include PureValidator::Validator
 
       validates :first_name, presence: true, length: { min: 4, max: 7 }
       validates :last_name,  length: { equal_to: 5 }
@@ -126,7 +126,7 @@ describe AttrValidator::Validator do
       it "raises with improper :validate definition" do
         expect{
           class ValidateWithoutArgsValidator
-            include AttrValidator::Validator
+            include PureValidator::Validator
             validate
           end
         }.to raise_error(ArgumentError, "method name or block should be given for validate")
@@ -136,18 +136,18 @@ describe AttrValidator::Validator do
     it "raises with non-existing validators" do
       expect {
         validator_class = Class.new do
-          include AttrValidator::Validator
+          include PureValidator::Validator
           validates :last_name,  lengths: { equal_to: 5 }
         end
-      }.to raise_error(AttrValidator::Errors::MissingValidatorError, "Validator with name 'lengths' doesn't exist")
+      }.to raise_error(PureValidator::Errors::MissingValidatorError, "Validator with name 'lengths' doesn't exist")
     end
 
     it "allows procs as validators" do
       validator_class = Class.new do
-        include AttrValidator::Validator
+        include PureValidator::Validator
 
         validate :shtick do |entity, errors|
-          errors.set(:shtick, AttrValidator::I18n.t('errors.can_not_be_nil'))
+          errors.set(:shtick, PureValidator::I18n.t('errors.can_not_be_nil'))
         end
       end
 
@@ -159,19 +159,19 @@ describe AttrValidator::Validator do
       expect(validator_class.new.validate({})).to eq({:shtick=>"can not be nil"})
       expect{
         validator_class.new.validate!({})
-      }.to raise_error(AttrValidator::Errors::ValidationError)
+      }.to raise_error(PureValidator::Errors::ValidationError)
     end
 
     context "skip_validation? (for associated_validations)" do
       context "with :if" do
         it "skips validations with a truthy proc, and otherwise not" do
           validator1 = Class.new do
-            include AttrValidator::Validator
+            include PureValidator::Validator
             validates :name, presence: true
           end
 
           validator2 = Class.new do
-            include AttrValidator::Validator
+            include PureValidator::Validator
             validate_associated :b, validator: validator1, if: lambda { true } # you are in the validator instance context here!
             validate_associated :c, validator: validator1, if: lambda { false }
             validate_associated :d, validator: validator1, if: :should_validate_d
@@ -199,12 +199,12 @@ describe AttrValidator::Validator do
       context "with :unless" do
         it "skips validations with a falsy proc, and otherwise not" do
           validator1 = Class.new do
-            include AttrValidator::Validator
+            include PureValidator::Validator
             validates :name, presence: true
           end
 
           validator2 = Class.new do
-            include AttrValidator::Validator
+            include PureValidator::Validator
             validate_associated :b, validator: validator1, unless: lambda { true } # you are in the validator instance context here!
             validate_associated :c, validator: validator1, unless: lambda { false }
             validate_associated :d, validator: validator1, unless: :should_skip_d?

@@ -1,4 +1,4 @@
-class AttrValidator::Validators::RegexpValidator
+class PureValidator::Validators::RegexpValidator
 
   # Validates that given value match regexp if regexp validation exists
   # @param value String value to match with regexp
@@ -9,13 +9,13 @@ class AttrValidator::Validators::RegexpValidator
 
     errors = []
     unless !!regexp.match(value)
-      errors << AttrValidator::I18n.t('errors.does_not_match')
+      errors << PureValidator::I18n.t('errors.does_not_match')
     end
     errors
   end
 
   def self.validate_options(regexp)
-    AttrValidator::ArgsValidator.is_string_or_regexp!(regexp, :validation_rule)
+    PureValidator::ArgsValidator.is_string_or_regexp!(regexp, :validation_rule)
   end
 
 end

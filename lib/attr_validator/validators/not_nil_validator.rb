@@ -1,4 +1,4 @@
-class AttrValidator::Validators::NotNilValidator
+class PureValidator::Validators::NotNilValidator
 
   # Validates that given object not nil
   # @param value    [Object] object to validate
@@ -8,18 +8,18 @@ class AttrValidator::Validators::NotNilValidator
     errors = []
     if presence
       if value.nil?
-        errors << AttrValidator::I18n.t('errors.can_not_be_nil')
+        errors << PureValidator::I18n.t('errors.can_not_be_nil')
       end
     else
       if value
-        errors << AttrValidator::I18n.t('errors.should_be_nil')
+        errors << PureValidator::I18n.t('errors.should_be_nil')
       end
     end
     errors
   end
 
   def self.validate_options(presence_flag)
-    AttrValidator::ArgsValidator.is_boolean!(presence_flag, :validation_rule)
+    PureValidator::ArgsValidator.is_boolean!(presence_flag, :validation_rule)
   end
 
 end

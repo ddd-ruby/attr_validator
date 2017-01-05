@@ -1,4 +1,4 @@
-class AttrValidator::Validators::EmailValidator
+class PureValidator::Validators::EmailValidator
   # This rule was adapted from https://github.com/emmanuel/aequitas/blob/master/lib/aequitas/rule/format/email_address.rb
   EMAIL_ADDRESS = begin
     letter         = 'a-zA-Z'
@@ -34,15 +34,15 @@ class AttrValidator::Validators::EmailValidator
 
     errors = []
     if email_flag
-      errors << AttrValidator::I18n.t("errors.invalid_email") unless !!EMAIL_ADDRESS.match(value)
+      errors << PureValidator::I18n.t("errors.invalid_email") unless !!EMAIL_ADDRESS.match(value)
     else
-      errors << AttrValidator::I18n.t("errors.can_not_be_email") if !!EMAIL_ADDRESS.match(value)
+      errors << PureValidator::I18n.t("errors.can_not_be_email") if !!EMAIL_ADDRESS.match(value)
     end
     errors
   end
 
   def self.validate_options(email_flag)
-    AttrValidator::ArgsValidator.is_boolean!(email_flag, :validation_rule)
+    PureValidator::ArgsValidator.is_boolean!(email_flag, :validation_rule)
   end
 
 end

@@ -1,4 +1,4 @@
-module AttrValidator
+module PureValidator
   # Copied from here https://github.com/rails/rails/blob/master/activesupport/lib/active_support/concern.rb
   #
   # A typical module looks like this:

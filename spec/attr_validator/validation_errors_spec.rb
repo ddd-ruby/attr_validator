@@ -1,8 +1,8 @@
 require "spec_helper"
 
 
-describe "AttrValidator::ValidationErrors" do
-  let(:errors){AttrValidator::ValidationErrors.new}
+describe "PureValidator::ValidationErrors" do
+  let(:errors){PureValidator::ValidationErrors.new}
 
 
   context "construction" do

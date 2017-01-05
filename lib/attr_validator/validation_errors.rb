@@ -1,4 +1,4 @@
-class AttrValidator::ValidationErrors
+class PureValidator::ValidationErrors
   attr_reader :messages
 
   def initialize
@@ -243,6 +243,6 @@ class AttrValidator::ValidationErrors
   end
 
   def humanize(value, options = {})
-    AttrValidator::Humanize.humanize(value, options)
+    PureValidator::Humanize.humanize(value, options)
   end
 end

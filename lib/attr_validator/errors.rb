@@ -1,4 +1,4 @@
-module AttrValidator::Errors
+module PureValidator::Errors
   # Thrown when object has validation errors
   class ValidationError < StandardError
     attr_reader :errors
