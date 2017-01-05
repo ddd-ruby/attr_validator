@@ -11,13 +11,16 @@ It is a simple step to separate those concerns, but it will give you unlimited f
 Do yourself a favor and start using PureValidator today, you will never look back!
 
 ## Usage
-Lets say you have the following class and you wan to validate objects of this class
+Let's say you have the following class and you want to validate its instances:
+
 ```ruby
 class Contact
   attr_accessor :first_name, :last_name, :position, :age, :type, :email, :color, :status, :stage, :description, :companies
 end
 ```
-To validate objects of the Contact class define a validator:
+
+To validate objects of the Contact class define following validator:
+
 ```ruby
 class ContactValidator
   include PureValidator::Validator
@@ -44,18 +47,22 @@ class ContactValidator
 end
 ```
 
-Instantiate the validator and pass a contact object inside:
+Instantiate the validator and call `validate` with a contact object:
+
 ```ruby
 errors = ContactValidator.new.validate(contact)
 ```
-errors is a hash which contains all validation errors
-if object is valid then errors will be empty
+
+`errors` is a Hash that contains all validation errors.
+If the object is valid then errors will be an empty Hash.
 
 ### Adding own validators
+
 PureValidator can be extended by adding your own validators.
-To add a validator define a class with two the class method validate and validate_options:
-The following example demonstrates the built in inclusion validator,
-it validates that specified value is one of the defined value
+To add a validator define a class with 2 static methods: `validate` and `validate_options`:
+
+The following example shows the built-in inclusion validator, it validates that specified value is one of the defined values.
+
 ```ruby
 class PureValidator::Validators::InclusionValidator
 
@@ -86,11 +93,15 @@ class PureValidator::Validators::InclusionValidator
 
 end
 ```
+
 And register it in PureValidator:
+
 ```ruby
-PureValidator.add_validator(:inclusion,    PureValidator::Validators::InclusionValidator)
+PureValidator.add_validator(:inclusion, PureValidator::Validators::InclusionValidator)
 ```
+
 Now you can use it:
+
 ```ruby
 class SomeValidator
   include PureValidator::Validator
@@ -121,8 +132,8 @@ Or install it yourself as:
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-## TODO
-1. Document methods
 
-## Author
-Albert Gazizov, [@deeper4k](https://twitter.com/deeper4k)
+## Authors
+
+- Albert Gazizov, [@deeper4k](https://twitter.com/deeper4k)
+- Roman Heinrich, [@mindreframer](https://twitter.com/mindreframer)
