@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["deeper4k@gmail.com"]
   spec.description   = %q{Object validation library}
   spec.summary       = %q{Moves validation logic to validators}
-  spec.homepage      = "http://github.com/AlbertGazizov/pure_validator"
+  spec.homepage      = "http://github.com/ddd-ruby/pure_validator"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
