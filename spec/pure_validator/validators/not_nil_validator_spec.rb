@@ -35,9 +35,9 @@ describe PureValidator::Validators::NotNilValidator do
 
   describe ".validate_options" do
     it "should raise error if validation attributes are invalid" do
-      lambda do
+      expect{
         PureValidator::Validators::NotNilValidator.validate_options("asdf")
-      end.should raise_error("validation_rule should be a Boolean")
+      }.to raise_error("validation_rule should be a Boolean")
     end
   end
 

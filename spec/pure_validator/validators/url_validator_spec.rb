@@ -1,35 +1,43 @@
 require 'spec_helper'
 
 describe PureValidator::Validators::UrlValidator do
+  def validate(*args)
+    PureValidator::Validators::UrlValidator.validate(*args)
+  end
+
+  def passes(v)
+    expect(v).to be_empty
+  end
+
+  def fails(v, errors)
+    expect(v).to eq(errors)
+  end
+
   describe ".validate" do
     it "should return empty errors if email is valid" do
-      errors = PureValidator::Validators::UrlValidator.validate('example-asdf.com', true)
-      errors.should be_empty
+      passes(validate('example-asdf.com', true))
     end
 
     it "should return errors if value is invalid" do
-      errors = PureValidator::Validators::UrlValidator.validate(':123asdffd.com', true)
-      errors.should == ["invalid url"]
+      fails(validate(':123asdffd.com', true), ["invalid url"])
     end
 
     context "false as url_flag" do
       it "fails if url is valid" do
-        errors = PureValidator::Validators::UrlValidator.validate('example-asdf.com', false)
-        expect(errors).to eq(["can not be a url"])
+        fails(validate('example-asdf.com', false), ["can not be a url"])
       end
 
       it "passes if url is invalid" do
-        errors = PureValidator::Validators::UrlValidator.validate(':123asdffd.com', false)
-        expect(errors).to eq([])
+        passes(validate(':123asdffd.com', false))
       end
     end
   end
 
   describe ".validate_options" do
     it "should raise error if validation attributes are invalid" do
-      lambda do
+      expect{
         PureValidator::Validators::UrlValidator.validate_options("asdf")
-      end.should raise_error("validation_rule should be a Boolean")
+      }.to raise_error("validation_rule should be a Boolean")
     end
   end
 end

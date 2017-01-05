@@ -79,7 +79,7 @@ describe PureValidator::Validator do
       contact.address = address
 
       errors = ContactValidator.new.validate(contact)
-      errors.should be_empty
+      expect(errors).to be_empty
     end
 
     it "should return validation errors if object is invalid" do
@@ -102,22 +102,24 @@ describe PureValidator::Validator do
       contact.companies = [company1, company2]
 
       errors = ContactValidator.new.validate(contact)
-      errors.should == {
-        first_name: ["can not be blank"],
-        last_name: ["should be equal to 5"],
-        age: ["should be greater than 0"],
-        type: ["should be less than or equal to 5"],
-        email: ["invalid email"],
-        color: ["does not match defined format"],
-        status: ["should be included in [:new, :lead]"],
-        stage: ["should not be included in [:wrong, :bad]"],
-        description: ["can't be empty"],
-        companies_errors: [
-          { name: ["can not be more than 9"] },
-          { name: ["can not be less than 3"] },
-        ],
-        address: ["can not be blank"],
-      }
+      expect(errors).to eq(
+        {
+          first_name: ["can not be blank"],
+          last_name: ["should be equal to 5"],
+          age: ["should be greater than 0"],
+          type: ["should be less than or equal to 5"],
+          email: ["invalid email"],
+          color: ["does not match defined format"],
+          status: ["should be included in [:new, :lead]"],
+          stage: ["should not be included in [:wrong, :bad]"],
+          description: ["can't be empty"],
+          companies_errors: [
+            { name: ["can not be more than 9"] },
+            { name: ["can not be less than 3"] },
+          ],
+          address: ["can not be blank"],
+        }
+      )
     end
   end
 
