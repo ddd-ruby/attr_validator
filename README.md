@@ -1,4 +1,5 @@
-# PureValidator [![Build Status](https://travis-ci.org/ddd-ruby/pure_validator.png)](https://travis-ci.org/ddd-ruby/pure_validator)
+# PureValidator
+[![Build Status](https://travis-ci.org/ddd-ruby/pure_validator.png)](https://travis-ci.org/ddd-ruby/pure_validator)
 [![Code Climate](https://codeclimate.com/github/ddd-ruby/pure_validator/badges/gpa.svg)](https://codeclimate.com/github/ddd-ruby/pure_validator)
 [![codecov](https://codecov.io/gh/ddd-ruby/pure_validator/branch/master/graph/badge.svg)](https://codecov.io/gh/ddd-ruby/pure_validator)
 [![Dependency Status](https://gemnasium.com/ddd-ruby/pure_validator.png)](https://gemnasium.com/ddd-ruby/pure_validator)
