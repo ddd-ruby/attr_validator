@@ -1,7 +1,7 @@
-# AttrValidator [![Build Status](https://travis-ci.org/AlbertGazizov/attr_validator.png)](https://travis-ci.org/AlbertGazizov/attr_validator) [![Code Climate](https://codeclimate.com/github/ddd-ruby/attr_validator/badges/gpa.svg)](https://codeclimate.com/github/ddd-ruby/attr_validator)
+# PureValidator [![Build Status](https://travis-ci.org/ddd-ruby/pure_validator.png)](https://travis-ci.org/ddd-ruby/pure_validator) [![Code Climate](https://codeclimate.com/github/ddd-ruby/pure_validator/badges/gpa.svg)](https://codeclimate.com/github/ddd-ruby/pure_validator)
 
 
-AttrValidator is simple library for validating ruby objects.
+PureValidator is simple library for validating ruby objects.
 The main idea of the gem is separate all object validation logic from the object itself
 
 ## Usage
@@ -14,7 +14,7 @@ end
 To validate objects of the Contact class define a validator:
 ```ruby
 class ContactValidator
-  include AttrValidator::Validator
+  include PureValidator::Validator
 
   validates :first_name, presence: true, length: { min: 4, max: 7 }
   validates :last_name,  length: { equal_to: 5 }
@@ -46,12 +46,12 @@ errors is a hash which contains all validation errors
 if object is valid then errors will be empty
 
 ### Adding own validators
-AttrValidator can be extended by adding your own validators.
+PureValidator can be extended by adding your own validators.
 To add a validator define a class with two the class method validate and validate_options:
 The following example demonstrates the built in inclusion validator,
 it validates that specified value is one of the defined value
 ```ruby
-class AttrValidator::Validators::InclusionValidator
+class PureValidator::Validators::InclusionValidator
 
   # Validates that given value inscluded in the specified list
   # @param value [Object] object to validate
@@ -65,7 +65,7 @@ class AttrValidator::Validators::InclusionValidator
     errors = []
     if options[:in]
       unless options[:in].include?(value)
-        errors << (options[:message] || AttrValidator::I18n.t('errors.should_be_included_in_list', list: options[:in]))
+        errors << (options[:message] || PureValidator::I18n.t('errors.should_be_included_in_list', list: options[:in]))
       end
     end
     errors
@@ -80,14 +80,14 @@ class AttrValidator::Validators::InclusionValidator
 
 end
 ```
-And register it in AttrValidator:
+And register it in PureValidator:
 ```ruby
-AttrValidator.add_validator(:inclusion,    AttrValidator::Validators::InclusionValidator)
+PureValidator.add_validator(:inclusion,    PureValidator::Validators::InclusionValidator)
 ```
 Now you can use it:
 ```ruby
 class SomeValidator
-  include AttrValidator::Validator
+  include PureValidator::Validator
 
   validates :size, inclusion: { in: [:small, :medium, :large] }
 end
@@ -97,7 +97,7 @@ end
 
 Add this line to your application's Gemfile:
 
-    gem 'attr_validator'
+    gem 'pure_validator'
 
 And then execute:
 
@@ -105,7 +105,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install attr_validator
+    $ gem install pure_validator
 
 ## Contributing
 
