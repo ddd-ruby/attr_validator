@@ -1,8 +1,13 @@
 # PureValidator [![Build Status](https://travis-ci.org/ddd-ruby/pure_validator.png)](https://travis-ci.org/ddd-ruby/pure_validator) [![Code Climate](https://codeclimate.com/github/ddd-ruby/pure_validator/badges/gpa.svg)](https://codeclimate.com/github/ddd-ruby/pure_validator) [![codecov](https://codecov.io/gh/ddd-ruby/pure_validator/branch/master/graph/badge.svg)](https://codecov.io/gh/ddd-ruby/pure_validator)
 
+PureValidator is a simple library to validate Ruby objects.
 
-PureValidator is simple library for validating ruby objects.
-The main idea of the gem is separate all object validation logic from the object itself
+The main idea is keeping the concerns of validation separate from the Entity / Value object itself.
+This gives you the option to have different validations rules for different ocasions for the same object in a very clean and unit-testable way.
+
+It is a simple step to separate those concerns, but it will give you unlimited flexibility and save your *SS from debugging entangled and conflicting validations for non-trivial requirements.
+
+Do yourself a favor and start using PureValidator today, you will never look back!
 
 ## Usage
 Lets say you have the following class and you wan to validate objects of this class
