@@ -1,8 +1,9 @@
 # PureValidator [![Build Status](https://travis-ci.org/ddd-ruby/pure_validator.png)](https://travis-ci.org/ddd-ruby/pure_validator) [![Code Climate](https://codeclimate.com/github/ddd-ruby/pure_validator/badges/gpa.svg)](https://codeclimate.com/github/ddd-ruby/pure_validator) [![codecov](https://codecov.io/gh/ddd-ruby/pure_validator/branch/master/graph/badge.svg)](https://codecov.io/gh/ddd-ruby/pure_validator)
 
-PureValidator is a simple library to validate Ruby objects.
+PureValidator is a simple, mostly dependency-free (except `i18n`) library to validate your domain Ruby objects.
 
-The main idea is keeping the concerns of validation separate from the Entity / Value object itself.
+It keeps the concerns of validation separate from the Entity / Value object itself.
+
 This gives you the option to have different validations rules for different ocasions for the same object in a very clean and unit-testable way.
 
 It is a simple step to separate those concerns, but it will give you unlimited flexibility and save your *SS from debugging entangled and conflicting validations for non-trivial requirements.
