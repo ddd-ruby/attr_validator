@@ -8,7 +8,7 @@ SimpleCov.start do
   add_filter "/.direnv/"
   add_filter "/core_extensions/class_attribute" # copy from ActiveSupport
   add_filter "/core_extensions/humanize" # copy from ActiveSupport
-  add_filter "/pure_validatorconcern" # copy from ActiveSupport
+  add_filter "/pure_validator/concern" # copy from ActiveSupport
 end
 if ENV['CI']=='true'
   require 'codecov'
