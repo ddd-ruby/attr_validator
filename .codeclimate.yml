@@ -19,10 +19,12 @@ engines:
     config:
       languages:
       - ruby
+
 ratings:
   paths:
-  - lib/**
+  - Gemfile.lock
   - "**.rb"
+
 exclude_paths:
 - spec/**/*
-- "lib/pure_validator/core_extensions/**/*
+- lib/pure_validator/core_extensions/**/*
