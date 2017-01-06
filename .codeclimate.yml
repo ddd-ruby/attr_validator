@@ -8,6 +8,12 @@ engines:
   brakeman:
     enabled: true
 
+  bundler-audit:
+    enabled: true
+
+  fixme:
+    enabled: true
+
   duplication:
     enabled: true
     config:
