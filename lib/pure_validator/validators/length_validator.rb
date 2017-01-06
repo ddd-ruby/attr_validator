@@ -33,28 +33,32 @@ class PureValidator::Validators::LengthValidator
   def handle_min
     return unless options[:min]
     if object.length < options[:min]
-      errors << PureValidator::I18n.t('errors.can_not_be_less_than', length: options[:min])
+      add_error!('errors.can_not_be_less_than', options[:min])
     end
   end
 
   def handle_max
     return unless options[:max]
     if object.length > options[:max]
-      errors << PureValidator::I18n.t('errors.can_not_be_more_than', length: options[:max])
+      add_error!('errors.can_not_be_more_than', options[:max])
     end
   end
 
   def handle_equal_to
     return unless options[:equal_to]
     if object.length != options[:equal_to]
-      errors << PureValidator::I18n.t('errors.should_be_equal_to', length: options[:equal_to])
+      add_error!('errors.should_be_equal_to', options[:equal_to])
     end
   end
 
   def handle_not_equal_to
     return unless options[:not_equal_to]
     if object.length == options[:not_equal_to]
-      errors << PureValidator::I18n.t('errors.should_not_be_equal_to', length: options[:not_equal_to])
+      add_error!('errors.should_not_be_equal_to', options[:not_equal_to])
     end
+  end
+
+  def add_error!(key, length)
+    errors << PureValidator::I18n.t(key, length: length)
   end
 end
