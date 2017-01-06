@@ -5,28 +5,7 @@ class PureValidator::Validators::NumericalityValidator
   # @param options [Hash]    validation rules
   # @return [Array] empty array if number is valid, array of error messages otherwise
   def self.validate(number, options)
-    return [] if number.nil?
-
-    errors = []
-    if options[:greater_than]
-      errors << PureValidator::I18n.t('errors.should_be_greater_than', number: options[:greater_than]) if number <= options[:greater_than]
-    end
-    if options[:greater_than_or_equal_to]
-      errors << PureValidator::I18n.t('errors.should_be_greater_than_or_equal_to', number: options[:greater_than_or_equal_to]) if number < options[:greater_than_or_equal_to]
-    end
-    if options[:less_than]
-      errors << PureValidator::I18n.t('errors.should_be_less_than', number: options[:less_than]) if number >= options[:less_than]
-    end
-    if options[:less_than_or_equal_to]
-      errors << PureValidator::I18n.t('errors.should_be_less_than_or_equal_to', number: options[:less_than_or_equal_to]) if number > options[:less_than_or_equal_to]
-    end
-    if options[:even]
-      errors << PureValidator::I18n.t('errors.should_be_even') unless number.even?
-    end
-    if options[:odd]
-      errors << PureValidator::I18n.t('errors.should_be_odd') unless number.odd?
-    end
-    errors
+    self.new(number, options).validate
   end
 
   def self.validate_options(options)
@@ -36,4 +15,44 @@ class PureValidator::Validators::NumericalityValidator
     ], :validation_rule)
   end
 
+  attr_accessor :object, :options, :errors
+  def initialize(object, options)
+    @object, @options = object, options
+    @errors = []
+  end
+
+  def validate
+    return errors if object.nil?
+
+    handle_compare(:greater_than, :<=, 'errors.should_be_greater_than')
+    handle_compare(:greater_than_or_equal_to, :<, 'errors.should_be_greater_than_or_equal_to')
+    handle_compare(:less_than, :>=, 'errors.should_be_less_than')
+    handle_compare(:less_than_or_equal_to, :>, 'errors.should_be_less_than_or_equal_to')
+    handle_condition(:even, :even?, 'errors.should_be_even')
+    handle_condition(:odd, :odd?, 'errors.should_be_odd')
+
+    errors
+  end
+
+  def handle_compare(key, condition, error_key)
+    return unless options[key]
+    if object.send(condition, options[key])
+      add_error!(error_key, options[key])
+    end
+  end
+
+  def handle_condition(key, condition, error_key)
+    return unless options[key]
+    unless object.send(condition)
+      add_error!(error_key)
+    end
+  end
+
+  def add_error!(key, number=nil)
+    if number
+      errors << PureValidator::I18n.t(key, number: number)
+    else
+      errors << PureValidator::I18n.t(key)
+    end
+  end
 end
