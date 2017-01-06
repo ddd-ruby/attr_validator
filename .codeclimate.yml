@@ -4,3 +4,19 @@ engines:
     exclude_fingerprints:
     - 1deadbbb4a858ae5aeeff38fc78ad557
     - 10973ead6ddf385b4d4d7ec0f75236ae
+
+  brakeman:
+    enabled: true
+
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - ruby
+ratings:
+  paths:
+  - lib/**
+  - "**.rb"
+exclude_paths:
+- spec/**/*
+- "lib/pure_validator/core_extensions/**/*
