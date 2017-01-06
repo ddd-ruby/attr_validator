@@ -22,39 +22,18 @@ class PureValidator::Validators::LengthValidator
   def validate
     return errors if object.nil?
 
-    handle_min
-    handle_max
-    handle_equal_to
-    handle_not_equal_to
+    handle(:min, :<, 'errors.can_not_be_less_than')
+    handle(:max, :>, 'errors.can_not_be_more_than')
+    handle(:equal_to, :!=, 'errors.should_be_equal_to')
+    handle(:not_equal_to, :==, 'errors.should_not_be_equal_to')
 
     errors
   end
 
-  def handle_min
-    return unless options[:min]
-    if object.length < options[:min]
-      add_error!('errors.can_not_be_less_than', options[:min])
-    end
-  end
-
-  def handle_max
-    return unless options[:max]
-    if object.length > options[:max]
-      add_error!('errors.can_not_be_more_than', options[:max])
-    end
-  end
-
-  def handle_equal_to
-    return unless options[:equal_to]
-    if object.length != options[:equal_to]
-      add_error!('errors.should_be_equal_to', options[:equal_to])
-    end
-  end
-
-  def handle_not_equal_to
-    return unless options[:not_equal_to]
-    if object.length == options[:not_equal_to]
-      add_error!('errors.should_not_be_equal_to', options[:not_equal_to])
+  def handle(key, condition, error_key)
+    return unless options[key]
+    if object.length.send(condition, options[key])
+      add_error!(error_key, options[key])
     end
   end
 
