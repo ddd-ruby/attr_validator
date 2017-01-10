@@ -14,6 +14,14 @@ It is a simple step to separate those concerns, but it will give you unlimited f
 
 Do yourself a favor and start using PureValidator today, you will never look back!
 
+## Installation
+
+Add this line to your application's Gemfile:
+
+```ruby
+gem 'pure_validator'
+```
+
 ## Usage
 Let's say you have the following class and you want to validate its instances:
 
