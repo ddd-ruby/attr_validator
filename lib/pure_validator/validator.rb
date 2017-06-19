@@ -66,7 +66,7 @@ module PureValidator::Validator
     self.associated_validations.each do |association_name, options|
       next if skip_validation?(options)
       validator = options[:validator].is_a?(Class) ? options[:validator].new : self.send(options[:validator])
-      children = entity.send(association_name)
+      children = get_attribute_value(entity, association_name)
       if children.is_a?(Array)
         validate_children(association_name, validator, children, errors)
       elsif children
@@ -93,13 +93,18 @@ module PureValidator::Validator
   private
 
   def validate_attr(attr_name, entity, validators)
-    attr_value = entity.send(attr_name)
+    attr_value = get_attribute_value(entity, attr_name)
     error_messages = []
     validators.each do |validator, validation_rule|
       error_messages = validator.validate(attr_value, validation_rule)
       break unless error_messages.empty?
     end
     error_messages
+  end
+
+  def get_attribute_value(entity, attr_name)
+    return entity[attr_name] if entity.is_a?(Hash)
+    return entity.send(attr_name)
   end
 
   def skip_validation?(options)
