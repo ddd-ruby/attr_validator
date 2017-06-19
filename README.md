@@ -28,7 +28,26 @@ Let's say you have the following class and you want to validate its instances:
 
 ```ruby
 class Contact
-  attr_accessor :first_name, :last_name, :position, :age, :type, :email, :color, :status, :stage, :description, :companies
+  attr_accessor :first_name, :last_name, :position, :age, :type,
+    :email, :color, :status, :stage, :description,
+    :companies, :address
+
+  def to_h
+    {
+      first_name: first_name,
+      last_name: last_name,
+      position: position,
+      age: age,
+      type: type,
+      email: email,
+      color: color,
+      status: status,
+      stage: stage,
+      description: description,
+      companies: (companies||[]).map(&:to_h),
+      address: (address && address.to_h),
+    }
+  end
 end
 ```
 
@@ -64,6 +83,13 @@ Instantiate the validator and call `validate` with a contact object:
 
 ```ruby
 errors = ContactValidator.new.validate(contact)
+```
+
+
+It also works with plain hashes:
+
+```ruby
+errors = ContactValidator.new.validate(contact.to_h)
 ```
 
 `errors` is a Hash that contains all validation errors.
